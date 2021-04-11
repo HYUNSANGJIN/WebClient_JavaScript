@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Event 객체</title>
+	<script type="text/javascript">
+		/*
+			try{
+				0/0 >> java에선 허용이 안됨 그래서 [예외] 발생
+				          ㄴ 예외 객체가 자동으로 new가 되고 그 객체의 주소가 catch에 전달
+			}catch(Exception e){
+				확인하거나 문제파악
+			}
+			
+			javascript >> 사건의 발생(click, mouseover) >> 내부적으로 객체를 생성
+			>> Event객체 >> 객체 안에는 다양한 정보가 들어있음(누가 사건을 발생시켰고, 주체는 누구고, 영향을 받는 사람은 누구?)
+			
+			https://cafe.naver.com/bit2021/525  -> 참고자료
+			
+			window.event.메서드
+			window.event.속성
+			
+		*/
+		
+		window.onload = function() {
+			let btn = document.getElementById("mybtn");
+			
+			btn.onclick = function(e){   // parameter 들어간 이유 : 이벤트가 발생되면 이벤트 객체가 자동 생성
+				console.log(e.type);     //   ㄴ e라는 변수가 이벤트 객체 주소를 받음
+				// ㄴ type은 이벤트 종류를 알려줌  -> click
+				console.log(e.target); // <span>눌러봐</span>
+				console.log(e.currentTarget); // <button id="mybtn"><span>눌러봐</span></button>
+				// ㄴ 이벤트가 걸린 전체의 내용을 가르킴
+				console.log(e.x); // 좌표값
+				console.log(e.y); // 좌표값
+				
+			}
+			
+			let btn2 = document.getElementById("mybtn2");
+			let handler = function(event) { // event 객체가 parameter로 전달된다.
+				switch (event.type) {
+				case "click": alert("클릭");
+					break;
+				case "mouseover": event.target.style.backgroundColor = "red";
+					break;
+				case "mouseout": event.target.style.backgroundColor = "";
+					break;
+				
+				
+				}
+			};
+			
+			btn2.onclick = handler;  // handler는 함수의 주소니깐 onclick할때 handler함수를 호출해라
+			btn2.onmouseover = handler;
+			btn2.onmouseout = handler;
+		}
+	</script>
+</head>
+<body>
+	<button id="mybtn"><span>눌러봐</span></button>
+	<br>
+	<button id="mybtn2">눌러봐2</button>
+</body>
+</html>

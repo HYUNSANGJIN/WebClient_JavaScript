@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p id="demo"></p>
+	<p id="demo2"></p>
+</body>
+	<script type="text/javascript">
+		//일반함수
+		//function foo() {}
+		
+		//익명함수
+		let foo = function() {
+			console.log("foo");
+		}
+			foo();  //함수 호출방식
+		
+			// ES6 (함수의 줄임 표현)
+			// 매개변수가 없는 경우(parameter)
+			// => 가 function의 결과
+			let bar = () => console.log("bar");
+			bar();
+			
+			// 매개변수 1개
+			//let foo2 = function(x){return x}
+			let foo2 = x => x;
+			
+			let hello;
+			//hello = (val) => "hello" + val; // return을 빼버릴수 있음
+			// 더 줄이는 방법은??
+			hello = val => "hello" + val;
+			let v = hello("aaa");
+			console.log(v);
+			document.getElementById("demo").innerHTML = hello("방가방가");
+			
+			// 매개변수가 2개이상인 경우
+			//let foo3 = (a,b) => {return a + b};
+			let foo3 = (a,b) => a+b;
+			let v2 = foo3(10,20);
+			let foo4 = (a,b) => {let c = 100; return a + b + c};
+			
+			// 객체 반환시
+			let foo5 = ()=> ({a:1, b:2, c:3});
+			let v3 = foo5();
+			console.log(v3);
+			
+			// 즉시 실행 함수(암기)
+			// 원칙 : 함수는 호출에 의해서
+			(
+				function(){
+					console.log("즉시 실행 함수");
+				}()
+			);
+			
+			// 화살표 표현식(=>)으로 표현하면?
+			(
+				() => {console.log("즉시 실행 함수");}		
+			)();
+			
+			// Array 객체가 가지고 있는 다양한 함수
+			// 암기하기(일반for, 개선된for, object가 오는경우 key파라메터)
+		// 1.for(let i=0; i<10; i++){}
+	    // 2. for(let index in Array){ Array[index]}
+	    // 		{a:1, b:2, c:3}
+		// 3.for(let key in Object){key...}
+		//	+ 추가적으로
+		//	Array.isArray();
+		// 4. Array.forEach(function());
+		//	Array.map()
+		
+		function myfunc(){
+			let fruits = ["A", "B", "C", "D"];
+			let x = document.getElementById("demo2");
+			x.innerHTML = Array.isArray(fruits); //true, false
+		}
+			myfunc();
+			
+			let txt = "";
+			let numbers = [45,4,9,16,25];
+		//	numbers.forEach(function(value, index, array) {
+				
+		//	});
+		
+		// each문은 파라메터로 value와 index를 가지고 안에서 놀때 쓰이고
+			numbers.forEach(myFunc2);
+			function myFunc2(value, index, array) {
+				txt ="(" + value + ")" + "[" + index + "]  [" + array + "]";
+			console.log(txt);
+			}
+			
+			// map 은 노는거 + return array
+			// let numbers = [45,4,9,16,25];
+			let numbermap = numbers.map(myFunc3); // map함수는 새로운 배열을 만들때
+			console.log(numbermap); // new array...
+			
+			function myFunc3(value, index, array) {
+				return value *2;
+			}
+		//////////////////////////////////////////////////////////////////
+			
+		let evens = [2,4,6,8];
+		let odds = evens.map(val=>val+1); // function(val){return val+1}
+		console.log(odds);  // 3,5,7,9
+		
+		let nums = evens.map((value, index)=> value + index);
+		console.log(nums); //[2, 5, 8, 11]
+		
+		let arr = [];
+		evens.forEach(value=>{
+			if(value % 2 === 0){
+				arr.push(value);
+			}
+		});
+		console.log(arr); // [2, 4, 6, 8]
+			
+	</script>
+</html>

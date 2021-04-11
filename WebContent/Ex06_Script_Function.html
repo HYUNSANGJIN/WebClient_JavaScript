@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Insert title here</title>
+   <link href="icon/KakaoTalk_20210312_113314316.png" rel="shortcut icon" type="image/x-icon">
+   <script type="text/javascript">
+   
+   //javascript : void(x), return type(x)
+   
+   function callConfirm() { //사용자 정의 함수 <-> 내장 함수 (웹브라우저가 가지고있는 것)
+      if(window.confirm("작업내용")) {
+         //window.confirm (내장함수) -> return true or false
+         alert("삭제");
+      } else {
+         alert("취소");
+      }
+   }
+   
+   function showPopup() {
+      window.open("Ex06_popup.html", "zipcode", "width=200, height=200");
+      //open() 새창 띄우기
+      /* 
+      		https://www.w3schools.com/jsref/met_win_open.asp -> open()
+      		
+      		window.open(URL, name, specs, replace)
+      		Use the close() method to close the window
+      		
+      		specs parameter
+      		- 브라우저마다 지원여부가 다를 수 있다.(미리 확인해야함)
+      		- 주소창, 창의 크기 ..etc
+      		
+      */
+   }
+   
+   	function myFunc() {
+   	 let mywindow = window.open("Ex06_popup.html", "zipcode", "width=500, height=200");
+   	 
+   	 // mywindow 새창(팝업창 전체)
+   	 mywindow.document.write("<p>this is zipcode window</p>")
+	}
+   	
+   	// jaca public void goUrlTime(String url){}
+   	function goUrlTime(url) {  // parameter는 이름
+		window.setTimeout("location.href='" + url+"'", 3000);
+   		// setTimeout 내장함수
+   		// 3초 지나면 첫번째 parameter에 있는 것을 실행해라
+   		// location.href= 'http://www.daum.net'
+	}
+   	
+   	function myfun(i, j, k) {  // = public int myfun(int i, int j, int k){return i+j+k}
+		return i+j+k; // 유연하니까 리턴타입을 안써도 알아서 리턴해줌
+	}
+   	
+   	let result = myfun(10, 20, 30);
+   	console.log("result : " + result);
+   	
+   	// **익명함수**  -> 한번쓰고 버림
+   	//  ㄴ 이름이 없는 함수
+   	// 원래는 -> function 함수이름() {} 이렇게 썻다면
+   	
+   	// 함수를 만드는 방법중의 하나!!(익명함수)
+   	// 원칙 : let changeColor = function ()
+   	changeColor = function () {   // function의 주소를 changeColor가 갖는다. , let 생략
+		window.document.bgColor = "black";
+   		window.document.fgColor = "black";
+	}
+   </script>
+</head>
+<body>
+   <h3>내장함수, 사용자 정의 함수 사용</h3>
+   <button onclick="callConfirm()">클릭이라는 사건 발생시 호출</button><br>
+    <button onclick="showPopup()">팝업창</button><br>
+     <button onclick="myFunc()">팝업객체</button><br>
+     <button onclick="goUrlTime('http://www.daum.net')">3초후에 이동합니다..</button><br>
+     <button onclick="changeColor()">익명함수</button><br>  <!--  익명함수 호출 -->
+</body>
+</html>

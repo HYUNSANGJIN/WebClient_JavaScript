@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>이벤트 주의사항</title>
+		<script type="text/javascript">
+			function displayDate() {
+				console.log("call");
+				document.getElementById("demo").innerHTML = new Date();  // 데이터 객체의 값을 뿌림
+			}
+			//document.getElementById("mybtn").onclick = displayDate();
+			// ㄴ body실행이 안되서 메모리에 없어서 실행안됨
+			
+			window.onload = function() {
+				console.log("load");
+			//	document.getElementById("mybtn").onclick = displayDate(); // 괄호 x
+			}
+		</script>
+</head>
+<body>
+	<button id="mybtn">눌러봐!</button>
+	<br>
+	<button id="mybtn2">눌러봐봐!!</button>
+	<br>
+	<p id="demo"></p>
+</body>
+		<script type="text/javascript">
+				// 버튼을 클릭하면 함수를 호출하겠다 인데 여기서 왜 호출됨?
+				//displayDate(); -> 버튼을 누르면 호출이 되야하는데 뒤에 ()가 붙어있으면 실행이됨
+				
+				// 즉, 밑에 로직이 클릭하기전에 displayDate() 가 실행이됨
+				//document.getElementById("mybtn").onclick = displayDate();
+				
+				// 버튼을 누를때 실행을 시키고 싶다면 -> ()를 빼줘야됨
+				document.getElementById("mybtn").onclick = displayDate;
+		</script>
+</html>

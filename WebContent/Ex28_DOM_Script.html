@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Insert title here</title>
+   <script type="text/javascript">
+      window.onload = function(){
+         let myphotos = ["images/1.jpg","images/2.jpg","images/3.jpg","images/4.jpg"];
+         
+         //이벤트 (onclick이벤트)
+         //현재 배열
+         //   0      1      2      3
+         //[1.jpg][2.jpg][3.jpg][4.jpg]
+         //다음클릭 >> 1.jpg >> 클릭 >> 2.jpg
+         
+         let index = 0;
+         console.log("index : "+ index);
+         
+         document.getElementById("prv").onclick = function(){
+        	 if(index == 0){
+        		 index = myphotos.length;  // index가 4가됨
+        	 }
+            document.getElementById("imgs").src = myphotos[--index];
+            
+         }
+         
+         document.getElementById("next").onclick = function(){
+        	 if(++index == myphotos.length){  // 방이 4개방 밖에 없는데 증가를 하면 안되니깐
+        		 //초기화가 필요
+        		 index = 0;  // 다시 0번째 방으로 돌아감
+        	 }
+        	 
+            document.getElementById("imgs").src = myphotos[index];
+         }
+         
+      }
+   </script>
+</head>
+<body>
+   <h3>DOM 슬라이드</h3>
+   <img alt="이미지" src="images/1.jpg" id="imgs" width="200" height="200">
+   <hr>
+   <a href="#" id="prv">이전</a>||<a href="#" id="next">다음</a>
+</body>
+</html>

@@ -1,0 +1,65 @@
+   <meta charset="UTF-8">
+    <title>할일 목록 앱</title>
+    <style>
+        #add-btn{
+            padding: 5px 10px;
+            border: 0;
+            background: #f80; color: white;
+            border-radius: 5px;
+        }
+        ul{ 
+            padding: 0; 
+            list-style-position: inside;
+        }
+        li{
+            border-bottom: 1px solid #999;
+            padding: 5px 0;
+        }
+        .active{ background: #abc; } /* step3: 목록 클릭 스타일 */
+    </style>
+</head>
+<body>
+    <h1 id='title'>할일 목록</h1>
+    <button id="add-btn">목록 추가</button>
+    <ul id='list'>
+        <li>제목 1</li>
+        <li>제목 2</li>
+        <li>제목 3</li>
+        <li>제목 4</li>
+    </ul>
+</body>
+   <script type="text/javascript">
+      let title = document.getElementById("title");
+      let list = document.getElementById("list");
+      let li = document.getElementsByName("li");
+      let addbtn = document.getElementById("add-btn");
+      
+      function activeItem(event){ //이벤트 객체의 주소를 받겠다
+         console.log(event.target); // 콘솔로그할 때 문자열 결합하면 다른 값이 나올 수 있음 주의
+         console.log(event.currentTarget);
+         
+         if(event.target.nodeName == 'LI') {
+            title.innerHTML = event.target.innerText; // 타이틀의 내용이 list의 텍스트로 바뀐다.
+            
+            
+            // 목록 스타일 초기화(class 제거)
+            for(let i=0; i<event.target.parentNode.children.length; i++){
+            	event.target.parentNode.children[i].removeAttribute('class'); // removeAttribute는 style속성 제거 가능
+            }
+            // 스타일 적용(현재 선택한 LI에 대해서)
+            event.target.setAttribute('class', 'active'); // 이게 걸렸다는 가정하에 for문이 돈다
+         }
+      }
+      
+      		// 목록추가
+      		addbtn.addEventListener('click', function(e) {
+      			let txt = prompt('제목 입력'); // 내장함수
+      			if(txt != null){
+      				list.innerHTML += '<li>' + txt + '</li>';
+      			}
+      			
+      		});
+      
+      list.addEventListener('click',activeItem);
+   </script>
+</html>

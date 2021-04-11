@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		let myObj = {name:"john", age:30, city:"seoul"};
+		console.log(myObj);
+		
+		// [객체 데이터]를 [문자열 데이터]로 변환시킬수 있음
+		// login.jsp?name=john&age=30&city=seoul
+		let Stringobj = JSON.stringify(myObj); // stringify -> 객체를 문자열로 바꿔줌
+		console.log(Stringobj);
+		console.log(typeof(Stringobj));
+		
+		//[문자열 데이터]를 [객체 데이터] 로 바꾸려면?
+		//  ㄴ 조건은 구조가 있어야함
+		let myObj2 = '{"name":"john", "age":30, "city":"seoul"}';
+		console.log(typeof(myObj2));
+		let myjson = JSON.parse(myObj2); // parse -> 문자열을 객체로\
+		console.log(typeof(myjson));
+		
+		// point
+		// 둘다 똑같은거임 
+		console.log(myjson.name); // 객체.속성명;
+		console.log(myjson["name"]); // 객체["문자열로 속성명"];
+		
+		/*
+			확장자
+			index.htm, index.html
+			css 확장자 -> common.css
+			javascript -> common.js
+			json -> common.json  : MIME타입 -> application/json
+			xml -> common.xml
+			
+			
+		*/
+		
+		let myCars;
+		myCars={
+				"name":"john",
+				"age":30,
+				"cars":[
+						 {"name":"Ford", "model":["Fiesta", "Focus", "Mustang"]},
+						 {"name":"BMW", "model":["320", "x3", "x5"]},
+						 {"name":"Fiat", "model":["500", "Panda"]}
+					   ]
+				
+		}
+		
+		
+		// 차량이름하고 모델명을 추출해라
+		// Ford -> Fiesta, Focus, Mustang
+		for(let index in myCars.cars){
+			console.log(myCars.cars[index]);
+			document.write("차량이름 : " + myCars.cars[index].name);
+			for(let i in myCars.cars[index].model){
+				document.write("차량모델 : "+myCars.cars[index].model[i]);
+				
+			}
+			document.write("<hr>");
+		}
+		
+		
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

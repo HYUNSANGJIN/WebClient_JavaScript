@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// 보통 함수를 만들때 이렇게 함
+	// function call(){}
+	// myfun = function(){}
+	
+	// function(){} -> **익명함수를 쓴거임(이름이 없음)
+	// 함수를 호출 -> 몇번이고 필요하다면 재호출
+	// setInterval함수가 실행될때 1000(1초) 간격으로 강제 실행
+	// callback함수 (프로그램 논리(흐름)에 의해 자동으로 호출 되는 함수) -> 1초마다 재호출(익명함수)
+	
+	// function aa(){} -> setInterval(aa(){},1000);
+	// ㄴ 이렇게 만들지 않는 이유
+	//     ㄴ function(){} 다른곳에 안쓰여서 setInterval만 쓸거라는 의도
+	var myTime = setInterval(function(){ // window.setInterval 인데 window 생략
+		let d = new Date(); // -> java : Date d = new Date()
+		let t = d.toLocaleTimeString();
+		document.getElementById("time").innerHTML = t;   // <body> 함수안에서 id가 time인걸 가져오겠다
+		
+	},1000);
+	
+	// 시간을 멈추고 싶을때
+	function myTimeStop() {
+		window.clearInterval(myTime);  // myTime == setInterval
+	}
+	
+</script>
+</head>
+<body>
+	<p id="time"></p>
+	<button onclick="myTimeStop()">stop Time</button>
+</body>
+</html>

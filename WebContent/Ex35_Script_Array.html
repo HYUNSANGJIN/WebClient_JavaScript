@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		//javascript 배열(Array) -> java(Collection) 동적배열이랑 같은거임
+		
+		let array = ['포도','사과'];
+		document.write(array.toString() + "<br>"); // 재정의 (배열값 출력)
+		document.write(array + "-default toString()<br>");
+		
+		for(let i=0; i<array.length; i++){
+			document.write(array[i] + "<br>");
+		}
+		document.write("<hr>");
+		for(let index in array){
+			document.write(array[index] + "<br>");
+		}
+		
+		// 동적
+		array[2] = "바나나"; // 동적으로 방을 지정해서 넣어줄수도 있음(동적 데이터 추가)
+		document.write(array.toString() + "-" + array.length + "<br>");
+		
+		// 가능은 하지만
+		// 권장하진 않음
+		array[10] = "애플망고"; // 동적으로 방을 지정해서 넣어줄수도 있음(동적 데이터 추가)
+		document.write(array.toString() + "-" + array.length + "<br>");
+		document.write(array[9] + "_array[9]<br>");
+		
+		array[9] = "배";
+		document.write(array[9] + "_초기화 : 타입설정 : _array[9]<br>"); // undefined
+		
+		let array2 = ["one" , "two", "three"];
+		document.write("array2 : " + array2.length + "<br>");
+		
+		// 권장하지 않음
+		array2.length = 2;  // 강제로 length를 2로 줄여봄
+		document.write(array2.toString() + "-" + array2.length + "<br>");
+		
+		// 권장하지 않음
+		array2.length = 4;  // 강제로 length를 2로 줄여봄
+		document.write(array2.toString() + "-" + array2.length + "<br>");
+		
+		// 권장방법은??
+	    // array -> stack구조임 -> LIFO -> 데이터를 넣을땐 push(), 뺼땐 pop()
+	    array2.push("four");
+		document.write(array2.toString() + "-" + array2.length + "<br>");
+		document.write(array2.pop()+ "<br>");// four
+		document.write(array2.pop()+ "<br>");// undefined -> 타입이 없어서
+		document.write(array2.pop()+ "<br>");// undefined -> 타입이 없어서
+		document.write(array2.pop()+ "<br>");// two
+		document.write(array2.pop()+ "<br>");// one
+		
+		let list = [];
+		list.push("A");
+		list.push("B");
+		list.push("C");
+		
+		document.write("<br>" + list.pop());
+	</script>
+</head>
+<body>
+
+</body>
+</html>
